@@ -34,12 +34,31 @@ function findByArtist(artist) {
   let results = [];
   for (let item of collection) {
     if (item.artist == artist){
-      results.push(artist);
+      results.push(item);
       }
     }
     return results;
   }
+// I wasn't sure if I was supposed to return the entire album or just the
+// artist name within results. I felt that the entire album was more meaningful
+// so I went with that.
 
+console.log('Should discover two album results:', findByArtist('Black Sabbath'));
+console.log('Not in array, should be empty:', findByArtist('Rush'));
 
-console.log(findByArtist('Black Sabbath'));
-console.log(findByArtist('Rush'));
+// STRETCH GOALS
+
+function search(...criteria) {
+  let results = [];
+  for (let criterion of criteria) {
+    for (let item of collection){
+        if (criterion == item.title || criteria == item.artist || criteria == item.yearPublished) {
+          results.push(item);
+      }
+    }
+  }
+  return results;
+}
+
+console.log(search(1970));
+console.log(search('Laughing Stock', 'Paranoid'));
