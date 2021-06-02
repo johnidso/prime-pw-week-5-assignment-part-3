@@ -19,3 +19,12 @@ addToCollection( 'Songs from the Big Chair', 'Tears for Fears', 1985 );
 addToCollection( 'Deloused in the Comatorium', 'Mars Volta', 2003 );
 
 console.log(collection);
+
+function showCollection(array) {
+  console.log(array.length);
+  for (let item of array) {
+    console.log(item.title, 'by', item.artist, 'published in', item.yearPublished);
+  }
+}
+
+showCollection(collection);
