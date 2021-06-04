@@ -1,39 +1,50 @@
 console.log('***** Music Collection *****')
 
 let collection = [];
+let tracks = [];
 
-function addToCollection ( title, artist, yearPublished, trackList ) {
+function addToCollection ( title, artist, yearPublished, tracks ) {
   let album = {
     title: title,
     artist: artist,
-    yearPublished: yearPublished
+    yearPublished: yearPublished,
+    tracks: tracks
   }
   collection.push(album);
 }
 
-addToCollection( 'Kaputt', 'Destroyer', 2011 );
+// adding tracks to collection objects
+
+function trackLoader( album, trackNumber, trackName, trackLength ) {
+    tracks.push(`
+${trackNumber}. ${trackName}: ${trackLength}`);
+}
+
+// creating a function to clear my track loader between albums.
+// I spent some time thinking about how I could do this programmatically but
+// after a lot of trial and error settled on this, which still meets the criteria
+
+function clearLoader() {
+  tracks = [];
+}
+
+// Adding tracks for 'Kaputt' and 'Laughing Stock' to test functionality
+
+trackLoader( 'Kaputt', 1, 'Chinatown', '3:49' );
+trackLoader( 'Kaputt', 2, 'Blue Eyes', '4:07' );
+addToCollection( 'Kaputt', 'Destroyer', 2011, tracks );
+clearLoader();
 addToCollection( 'After the Gold Rush', 'Neil Young', 1970 );
-addToCollection( 'Laughing Stock', 'Talk Talk', 1991 );
+trackLoader( 'Laughing Stock', 1, 'Myrrhman', '5:33' );
+trackLoader( 'Laughing Stock', 2, 'Ascension Day', '6:00' );
+addToCollection( 'Laughing Stock', 'Talk Talk', 1991, tracks );
+clearLoader();
 addToCollection( 'Master of Reality', 'Black Sabbath', 1971 );
 addToCollection( 'Songs from the Big Chair', 'Tears for Fears', 1985 );
 addToCollection( 'Deloused in the Comatorium', 'Mars Volta', 2003 );
 addToCollection( 'Paranoid', 'Black Sabbath', 1970 )
 
-// adding tracks to collection objects
-
-function addTrack( album, trackName, trackLength ) {
-  for (let item of collection){
-    if (album == item.title){
-      item['trackName'] = trackName;
-      item['trackLength'] = trackLength;
-    } else {
-      return false;
-    }
-  }
-}
-
-addTrack( 'Kaputt', 'Chinatown', '3:49' );
-
+console.log(tracks);
 
 console.log(collection);
 
@@ -42,7 +53,8 @@ console.log(collection);
 function showCollection(array) {
   console.log(array.length);
   for (let item of array) {
-    console.log(item.title, 'by', item.artist, 'published in', item.yearPublished);
+    console.log(`${item.title} by ${item.artist}, published in ${item.yearPublished}
+${item.tracks}`);
   }
 }
 
