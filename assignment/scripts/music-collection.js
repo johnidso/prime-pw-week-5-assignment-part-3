@@ -1,6 +1,7 @@
 console.log('***** Music Collection *****')
 
 let collection = [];
+let trackList = [];
 let tracks = [];
 
 function addToCollection ( title, artist, yearPublished, tracks ) {
@@ -13,39 +14,49 @@ function addToCollection ( title, artist, yearPublished, tracks ) {
   collection.push(album);
 }
 
-// adding tracks to collection objects
+// **********
 
-function trackLoader( album, trackNumber, trackName, trackLength ) {
-    tracks.push(`
-${trackNumber}. ${trackName}: ${trackLength}`);
+function listTrack(albumName, trackNumber, trackName, trackLength){
+  track = {
+    trackName: trackName,
+    trackNumber: trackNumber,
+    trackLength: trackLength,
+    albumName: albumName
+  }
+  trackList.push(track)
 }
+// populate tracklist with tracks
 
+listTrack( 'Kaputt', 1, 'Chinatown', '3:49' );
+listTrack( 'Kaputt', 2, 'Blue Eyes', '4:07' );
+listTrack( 'Laughing Stock', 1, 'Myrrhman', '5:33' );
+listTrack( 'Laughing Stock', 2, 'Ascension Day', '6:00' );
 
-// creating a function to clear my track loader between albums.
-// I spent some time thinking about how I could do this programmatically but
-// after a lot of trial and error settled on this, which still meets the criteria
+console.log(trackList);
 
-function clearLoader() {
+function loadTracks(album) {
   tracks = [];
+  for (let item of trackList){
+    if (item.albumName == album){
+      tracks.push(item);
+    }
+  }
 }
+
+loadTracks('Kaputt');
+console.log(tracks);
 
 // Adding tracks for 'Kaputt' and 'Laughing Stock' to test functionality
 
-trackLoader( 'Kaputt', 1, 'Chinatown', '3:49' );
-trackLoader( 'Kaputt', 2, 'Blue Eyes', '4:07' );
-addToCollection( 'Kaputt', 'Destroyer', 2011, tracks );
-clearLoader();
+
+addToCollection( 'Kaputt', 'Destroyer', 2011, tracks);
 addToCollection( 'After the Gold Rush', 'Neil Young', 1970 );
-trackLoader( 'Laughing Stock', 1, 'Myrrhman', '5:33' );
-trackLoader( 'Laughing Stock', 2, 'Ascension Day', '6:00' );
-addToCollection( 'Laughing Stock', 'Talk Talk', 1991, tracks );
-clearLoader();
+loadTracks('Laughing Stock');
+addToCollection( 'Laughing Stock', 'Talk Talk', 1991, tracks);
 addToCollection( 'Master of Reality', 'Black Sabbath', 1971 );
 addToCollection( 'Songs from the Big Chair', 'Tears for Fears', 1985 );
 addToCollection( 'Deloused in the Comatorium', 'Mars Volta', 2003 );
 addToCollection( 'Paranoid', 'Black Sabbath', 1970 )
-
-console.log(tracks);
 
 console.log(collection);
 
@@ -54,8 +65,7 @@ console.log(collection);
 function showCollection(array) {
   console.log(array.length);
   for (let item of array) {
-    console.log(`${item.title} by ${item.artist}, published in ${item.yearPublished}
-${item.tracks}`);
+    console.log(`${item.title} by ${item.artist}, published in ${item.yearPublished}`, item.tracks);
   }
 }
 
@@ -89,12 +99,13 @@ function search(...criteria) {
             // get the search working without re-engineering my code to include
             // another level of objects
           results.push(item);
+        }
       }
     }
+    return results;
   }
-  return results;
-}
 
+console.log(collection['tracks']);
 console.log(search(1970));
 console.log(search('Laughing Stock', 'Paranoid'));
 console.log(search('Chinatown'))
