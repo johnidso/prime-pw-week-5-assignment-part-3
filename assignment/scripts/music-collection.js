@@ -95,9 +95,12 @@ function search(...criteria) {
   for (let criterion of criteria) {
     for (let item of collection){
         if (criterion == item.title || criterion == item.artist
-          || criterion == item.yearPublished ) { // I seemingly can't
-            // get the search working without re-engineering my code to include
-            // another level of objects
+          || criterion == item.yearPublished ) {
+            // I'm having a lot of trouble figuring out how to reference my
+            // tracks array within the collection array. that's preventing me
+            // from finishing the search step of the stretch goal here.
+            // all the nested arrays that I felt I needed don't seem possible
+            // to reference within if statements. Is there something I'm missing?
           results.push(item);
         }
       }
