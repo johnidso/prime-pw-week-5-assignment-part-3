@@ -20,6 +20,7 @@ function trackLoader( album, trackNumber, trackName, trackLength ) {
 ${trackNumber}. ${trackName}: ${trackLength}`);
 }
 
+
 // creating a function to clear my track loader between albums.
 // I spent some time thinking about how I could do this programmatically but
 // after a lot of trial and error settled on this, which still meets the criteria
@@ -83,7 +84,10 @@ function search(...criteria) {
   let results = [];
   for (let criterion of criteria) {
     for (let item of collection){
-        if (criterion == item.title || criteria == item.artist || criteria == item.yearPublished) {
+        if (criterion == item.title || criterion == item.artist
+          || criterion == item.yearPublished ) { // I seemingly can't
+            // get the search working without re-engineering my code to include
+            // another level of objects
           results.push(item);
       }
     }
@@ -93,5 +97,6 @@ function search(...criteria) {
 
 console.log(search(1970));
 console.log(search('Laughing Stock', 'Paranoid'));
+console.log(search('Chinatown'))
 
 // update addToCollection, search, and showCollection to handle tracks
