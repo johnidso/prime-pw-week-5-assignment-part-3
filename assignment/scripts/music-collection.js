@@ -12,6 +12,7 @@ function addToCollection ( title, artist, yearPublished, tracks ) {
     tracks: tracks
   }
   collection.push(album);
+  return album;
 }
 
 // **********
@@ -48,18 +49,19 @@ console.log(tracks);
 
 // Adding tracks for 'Kaputt' and 'Laughing Stock' to test functionality
 
-
-addToCollection( 'Kaputt', 'Destroyer', 2011, tracks);
-addToCollection( 'After the Gold Rush', 'Neil Young', 1970 );
+// Add 6 albums to your collection. Console.log each album as added using the returned value.
+console.log(addToCollection( 'Kaputt', 'Destroyer', 2011, tracks));
+console.log(addToCollection( 'After the Gold Rush', 'Neil Young', 1970 ));
 loadTracks('Laughing Stock');
-addToCollection( 'Laughing Stock', 'Talk Talk', 1991, tracks);
-addToCollection( 'Master of Reality', 'Black Sabbath', 1971 );
-addToCollection( 'Songs from the Big Chair', 'Tears for Fears', 1985 );
-addToCollection( 'Deloused in the Comatorium', 'Mars Volta', 2003 );
-addToCollection( 'Paranoid', 'Black Sabbath', 1970 )
-
+console.log(addToCollection( 'Laughing Stock', 'Talk Talk', 1991, tracks));
+console.log(addToCollection( 'Master of Reality', 'Black Sabbath', 1971 ));
+console.log(addToCollection( 'Songs from the Big Chair', 'Tears for Fears', 1985 ));
+console.log(addToCollection( 'Deloused in the Comatorium', 'Mars Volta', 2003 ));
+console.log(addToCollection( 'Paranoid', 'Black Sabbath', 1970 ));
+// After all are added, console.log the collection array.
 console.log(collection);
 
+// Add a function named showCollection
 // update showCollection to display tracks appropriately
 
 function showCollection(array) {
@@ -88,7 +90,7 @@ console.log('Should discover two album results:', findByArtist('Black Sabbath'))
 console.log('Not in array, should be empty:', findByArtist('Rush'));
 
 // STRETCH GOALS
-//update search to include trackName criteria
+// update search to include trackName criteria
 
 function search(...criteria) {
   let results = [];
